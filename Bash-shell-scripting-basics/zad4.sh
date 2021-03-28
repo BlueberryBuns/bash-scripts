@@ -1,20 +1,4 @@
 #!/usr/bin/env bash
-#
-# Systemy operacyjne 2 – laboratorium nr 2 – semestr letni 2020/2021
-#
-# Celem zajęć jest nabranie doświadczenia w podstawowej pracy z powłoką Bash,
-# w szczególności w nawigowaniu po drzewie katalogów i sprawdzaniu uprawnień.
-#
-# Przygotowane rozwiązania nie muszą być całkowicie uniwersalne. Zakładamy,
-# że ogólna struktura katalogów się nie zmienia (nie będzie już więcej/mniej
-# poziomów podkatalogów), jednakże same nazwy i zawartości plików (o ile
-# nie są podane wprost w treści zadań) mogą być dowolne i ulegać zmianie,
-# a przygotowane rozwiązania nadal powinny działać.
-#
-# Wszystkie chwyty dozwolone, ale ostatecznie w wyniku ma powstać tylko to,
-# o czym mowa w treści zadania – tworzone samodzielnie ewentualne tymczasowe
-# pliki pomocnicze należy usunąć.
-#
 
 #
 # Zadanie 4.
@@ -24,4 +8,16 @@
 # Kolejność łączenia plików nie ma znaczenia.
 #
 
+dest_file="ddd/całość"
+files="aaa/*"
 
+if [ -f "${dest_file}" ]; then
+    rm "${dest_file}"
+    echo "File ${dest_file} has been deleted"
+fi
+
+for file in $files
+do
+    echo $(cat "${file}") >> $dest_file
+    echo "File ${file} content has been copied to ${dest_file}"
+done
