@@ -1,20 +1,4 @@
 #!/usr/bin/env bash
-#
-# Systemy operacyjne 2 – laboratorium nr 2 – semestr letni 2020/2021
-#
-# Celem zajęć jest nabranie doświadczenia w podstawowej pracy z powłoką Bash,
-# w szczególności w nawigowaniu po drzewie katalogów i sprawdzaniu uprawnień.
-#
-# Przygotowane rozwiązania nie muszą być całkowicie uniwersalne. Zakładamy,
-# że ogólna struktura katalogów się nie zmienia (nie będzie już więcej/mniej
-# poziomów podkatalogów), jednakże same nazwy i zawartości plików (o ile
-# nie są podane wprost w treści zadań) mogą być dowolne i ulegać zmianie,
-# a przygotowane rozwiązania nadal powinny działać.
-#
-# Wszystkie chwyty dozwolone, ale ostatecznie w wyniku ma powstać tylko to,
-# o czym mowa w treści zadania – tworzone samodzielnie ewentualne tymczasowe
-# pliki pomocnicze należy usunąć.
-#
 
 #
 # Zadanie 6.
@@ -22,5 +6,23 @@
 # pliku `bardzo tajna treść` (jest on w katalogu `ddd`) i skopiować znaleziony
 # plik do katalogu `ddd`, jeśli jeszcze go tam nie ma.
 #
+classified_content="ddd/bardzo tajna treść"
+dir="ddd"
+checked_folder="bbb"
 
+check_file(){
+for element in "${1}"/*; do
+    if [ -d "${element}" ]; then
+        check_file "${element}" "${2}" "${3}"
+    elif [ -f "${element}" ]; then
+        if cmp -s "${element}" "${2}"; then
+            cp -n "${element}" ${3}
+            echo "File ${element} has been copied to ${3}"
+        fi
+    else
+        echo "Error"
+    fi
+done;
+}
 
+check_file "${checked_folder}" "${classified_content}" "${dir}"
