@@ -24,4 +24,16 @@
 # Nie wyświetlać nic ponadto!
 #
 
+dir="ccc"
 
+foo(){
+    for elem in "${1}"/*; do
+        if [ -L "${elem}" ]; then
+            if [ ! -e "${elem}" ]; then
+                echo "${elem}"
+            fi  
+        fi
+    done
+}
+
+foo "${dir}"
