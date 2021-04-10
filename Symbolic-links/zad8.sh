@@ -26,4 +26,31 @@
 # (na przykład: bravo:../aaa/bravo).
 #
 
+# for e in "ccc"/*; do
+# if [ -L "${e}" ]; then
+#     echo "${e} -> $(readlink ${e})"
+# fi
+# done
 
+dir="ccc"
+alt_dirs=("aaa" "bbb")
+foo(){
+    local var="${1}"
+    echo "${var}"
+    shift
+    array=("$@")
+    for elem in "${var}"/*; do
+        if [ -L "${elem}" -a ! -e "${elem}" ]; then
+            for directory in "${array[@]}"; do
+                for file in "${directory}"/*; do
+                    if [ "$(basename ${file})" == "$(basename $(readlink ${elem}))" -a -f "${file}" ]; then
+                        echo "$(basename ${elem}):$(realpath --relative-to=${var} ${file})"
+                    fi
+                    xd=0
+                done
+            done
+        fi
+    done
+}
+
+foo "${dir}" "${alt_dirs[@]}"
