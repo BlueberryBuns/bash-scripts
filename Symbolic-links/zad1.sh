@@ -23,4 +23,25 @@
 # jeśli jakikolwiek plik o nazwie `pierwszy` już istnieje w `ddd`.
 #
 
+dest_dir='ddd'
+link_name='pierwszy'
+file='aaa/podstawa'
 
+foo(){
+    link_exists=0
+    if [ -e "${1}/${2}" ]; then
+        echo "istnieje!"
+        link_exists=1
+    else
+        echo "nie istnieje"
+    fi
+
+    if [ ! link_exists ]; then
+        ln "${3}" "${1}/${2}"
+        echo "Utworzono dowiązanie twarde"
+    else
+        echo "Nie utworzono dowiązania"
+    fi
+}
+
+foo "${dest_dir}" "${link_name}" "${file}"
