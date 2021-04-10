@@ -24,4 +24,17 @@
 # jeśli jakikolwiek plik o nazwie `drugi` już istnieje w `ddd`.
 #
 
+src="aaa/podstawa"
+dest_dir="ddd"
+file="drugi"
 
+foo(){
+    if [ ! -e "${1}/${2}" ]; then
+        ln -s "$(realpath ${3})" "${1}/${2}"
+        echo "Utworzono dowiązanie miękkie"
+    else
+        echo "Plik istnieje"
+    fi
+}
+
+foo "${dest_dir}" "${file}" "${src}"
