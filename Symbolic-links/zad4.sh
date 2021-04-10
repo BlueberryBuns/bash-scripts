@@ -24,4 +24,22 @@
 # dodatkowych plików/dowiązań wewnętrznych.
 #
 
+dest_dir="ddd"
+src_dirs=("aaa" "bbb" "ccc")
+
+foo(){
+    local var="${1}"
+    shift
+    array=("$@")
+    for dir in "${array[@]}"; do
+        if [ ! -L "${var}/${dir}" ]; then
+            ln -s "$(realpath ${dir})" "${var}/$(basename ${dir})"
+            echo "Creating link to ${dir}"
+        else
+            echo "Omitting directory $(basename ${dir})"
+        fi
+    done
+}
+
+foo "${dest_dir}" "${src_dirs[@]}"
 
