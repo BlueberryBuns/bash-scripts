@@ -36,7 +36,6 @@ foo(){
             else
                 ln -s "$(realpath ${elem})" "${2}/$(basename ${elem})"
                 echo "Created link to ${elem}"
-
             fi
         fi
     done
