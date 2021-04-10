@@ -24,4 +24,15 @@
 # względem katalogu domowego bieżącego użytkownika (zmienna ${HOME}).
 #
 
+dir="ccc"
+
+foo(){
+    for elem in "${1}"/*; do
+        if [ -L "${elem}" -a -e "${elem}" ]; then
+            echo "$(realpath --relative-to=${HOME} ${elem})"
+        fi
+    done
+}
+
+foo "${dir}"
 
