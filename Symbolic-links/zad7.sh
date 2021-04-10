@@ -25,4 +25,29 @@
 # przez dowiązanie nie ma dla nas znaczenia.
 #
 
+dir="bbb"
+file="linki"
+dst="ddd"
+foo(){
+    if [ -f "${1}/${2}" ]; then
+        override=true
+    else
+        override=false
+    fi
+    for elem in "${1}"/*; do
+        if [ -L "${elem}" ]; then
+            if [[ "$(readlink ${elem})" = /* ]];then
+                if "${override}"; then
+                    echo "$(readlink -m ${elem})" > "${3}/${2}"
+                    override=false
+                else
+                    echo "$(readlink -m ${elem})" >> "${3}/${2}"
+                fi
+            fi
+        fi
+    done
+}
+
+
+foo "${dir}" "${file}" "${dst}"
 
