@@ -24,4 +24,22 @@
 # upewnić się, że nie zmienimy żadnych istniejących plików w `ddd`.
 #
 
+dest_dir="ddd"
+src_dir="aaa"
 
+foo(){
+    for elem in "${1}"/*; do
+        if [ -x "${elem}" ]; then
+            echo "$(basename ${elem})"
+            if [ -e "${2}/$(basename ${elem})" ]; then
+                echo "Omitting file ${elem}"
+            else
+                ln -s "$(realpath ${elem})" "${2}/$(basename ${elem})"
+                echo "Created link to ${elem}"
+
+            fi
+        fi
+    done
+}
+
+foo "${src_dir}" "${dest_dir}"
