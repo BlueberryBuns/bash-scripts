@@ -28,4 +28,17 @@
 # Przykład uruchomienia: ./zad9.sh '../aaa/echo'
 #
 
+dir="ccc"
+path="${1}"
+
+if [ -z "$*" ];then
+    exit 1
+fi
+
+for elem in "${dir}"/*; do
+    if [ "$(readlink ${elem})" == "${path}" ]; then
+        echo "${elem}"
+    fi
+done
+
 
