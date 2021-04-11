@@ -28,4 +28,17 @@
 # Przykład uruchomienia: ./zadA.sh 'bbb' 'ddd/wanted'
 #
 
-
+if [ ! "${#}" -ne 2 ]; then
+    if [ ! -e "${1}" -o ! -e "${2}" ]; then
+        exit 1
+    else
+    rp="$(realpath ${2})"
+        for elem in "${1}"/*; do
+            if [ "$(readlink -f ${elem})" == "${rp}" ]; then
+            echo "$(basename ${elem})"
+            fi
+        done
+    fi
+else
+    exit 1
+fi
