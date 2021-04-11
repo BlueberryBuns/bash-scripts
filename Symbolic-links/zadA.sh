@@ -34,7 +34,7 @@ if [ ! "${#}" -ne 2 ]; then
     else
     rp="$(realpath ${2})"
         for elem in "${1}"/*; do
-            if [ "$(readlink -f ${elem})" == "${rp}" ]; then
+            if [ "${2}" -ef "${elem}" ]; then
             echo "$(basename ${elem})"
             fi
         done
