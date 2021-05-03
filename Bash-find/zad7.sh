@@ -7,4 +7,4 @@
 # Wyświetlić same nazwy pasujących plików, każdą nazwę w osobnej linii.
 #
 
-find -L "linux-5.11.13" -type f ! -executable -name "[[:upper:]]*.py" -printf "%f\n"
+find -P "linux-5.11.13" -type f ! -executable -name "[[:upper:]]*.py" -printf "%f\n"
