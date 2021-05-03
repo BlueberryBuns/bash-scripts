@@ -7,5 +7,5 @@
 # ich zawartość. Podać ile dokładnie jest takich plików (zwrócić wyłącznie
 # liczbę plików).
 #
-echo XD
-find -L "linux-5.11.13" -size 1k | wc -l
+
+find -P "linux-5.11.13" -size -1024c -type f -perm /u=w -a -not -perm /g=w,o=w | wc -l
