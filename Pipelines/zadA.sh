@@ -1,19 +1,4 @@
 #!/usr/bin/env bash
-#
-# Systemy operacyjne 2 – laboratorium nr 5 – semestr letni 2020/2021
-#
-# Celem zajęć jest nabranie doświadczenia w pracy z mechanizmem łącz
-# nienazwanych, wykorzystując przy tym szereg podstawowych narzędzi
-# do przetwarzania danych tekstowych.
-#
-# Tradycyjnie nie przywiązujemy zbyt dużej wagi do środowiska roboczego.
-# Zakładamy, że format i układ danych w podanych plikach nie ulega zmianie,
-# ale same wartości, inne niż podane wprost w treści zadań, mogą ulec zmianie,
-# a przygotowane zadania wciąż powinny działać poprawnie (robić to, co trzeba).
-#
-# Wszystkie chwyty dozwolone, ale w wyniku ma powstać tylko to, o czym jest
-# mowa w treści zadania – nie generujemy żadnych dodatkowych plików pośrednich.
-#
 
 #
 # Zadanie 10.
@@ -27,3 +12,4 @@
 # Każdy adres e-mail wyświetlać w osobnej linii, nie wyświetlać nic ponadto.
 #
 
+echo "$(grep " *" dodatkowe/listaSluchaczy_E07-19x.csv | cut -d ";" -f 2 | grep "\_[0-9]*" | cut -c5-10 | while read line; do echo ${line}@student.pwr.edu.pl ; done )"
