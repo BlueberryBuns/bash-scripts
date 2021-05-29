@@ -26,3 +26,4 @@
 # (źródło: https://wolnelektury.pl/media/book/txt/pan-tadeusz.txt).
 #
 
+awk "BEGIN{NR==2} (NR-2)%3==0" dodatkowe/tadeusz.txt
