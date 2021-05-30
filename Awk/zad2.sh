@@ -9,6 +9,6 @@
 # Każdą nazwę użytkownika wypisać w nowej linii.
 #
 
-awk '{ split($0, line, ":")
-if (line[3] >= 1000 && line[7] == "/bin/bash")
-    print line[1]}' dodatkowe/etc-passwd
+awk '{ split($0, text_line, ":")
+if (text_line[3] >= 1000 && text_line[7] == "/bin/bash")
+    print text_line[1]}' dodatkowe/etc-passwd
