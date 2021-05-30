@@ -25,3 +25,8 @@
 # rozmiar w Bajtach. Jako wynik zwrócić liczbę w MebiBajtach.
 #
 
+find -L "coreutils-8.32" -printf '%s\n' | awk '{
+    TOTAL_SIZE = TOTAL_SIZE + $0 / 1048576
+}END{
+    print TOTAL_SIZE
+}'
