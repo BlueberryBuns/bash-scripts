@@ -29,3 +29,11 @@
 # pliku ze strony: https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html
 #
 
+awk 'NR>1{
+    split($0, DATA, ",")
+    AVG = DATA[4] + DATA[5] + DATA[6] + DATA[7]
+    AVG = AVG + DATA[8]*2
+    AVG /= 6
+
+    print substr(DATA[3], length(DATA[3])-11, 11) " " AVG
+}' dodatkowe/grades.csv
