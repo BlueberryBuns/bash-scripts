@@ -25,3 +25,13 @@
 # liniach, a wartości liczbowe poprzedzić etykietą "CPU:" bądź "RAM:".
 #
 
+awk 'BEGIN{
+    NR==2
+}{
+    split($0, data_line, " ")
+    cpu = cpu + data_line[3]
+    mem = mem + data_line[4]
+}END{
+    print "CPU: " cpu
+    print "RAM: " mem
+}' dodatkowe/ps-aux
