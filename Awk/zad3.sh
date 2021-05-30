@@ -28,3 +28,13 @@
 # pliku ze strony: https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html
 #
 
+awk '{
+    if(NR==1){
+        split($0, first_line, ",")
+    }else{
+        split($0, one_of_following, ",")
+        if(length(first_line) != length(one_of_following)){
+            print NR
+        }
+    }
+}' dodatkowe/cities.csv
