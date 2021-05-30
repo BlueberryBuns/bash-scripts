@@ -27,3 +27,13 @@
 # dotyczących liczby znaków!
 #
 
+awk '{
+    split($0, DATA_LINE, " ")
+    CHARS = CHARS + length($0) + 1 
+    WORDS = WORDS + length(DATA_LINE)
+    LINES = LINES + 1
+}END{
+    print CHARS
+    print WORDS
+    print LINES
+}' dodatkowe/nowomowa.txt
