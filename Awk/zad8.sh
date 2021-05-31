@@ -27,3 +27,20 @@
 # tekst po przekształceniu.
 #
 
+
+awk 'BEGIN{
+    RS=" "; counter=0; ref="";
+}{
+    if(79 - (counter + length($0)) < 0){
+        ref = ref"\n"$0
+        counter = (length($0) + 1)
+    }else if( NR!=1 ){
+        counter = (counter + length($0) + 1)
+        ref = ref" "$0
+    }else{
+        ref = $0
+        counter = (counter + length($0))
+    }
+}END{
+    printf ref
+}' dodatkowe/lipsum.txt
