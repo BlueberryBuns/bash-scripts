@@ -27,3 +27,23 @@
 # uwzględnić taką sytuację.
 #
 
+awk '{
+    split($0, DATA, " ")
+    counter = 0
+    for (i in DATA){
+        split(DATA[i], letters,"")
+        for (l in letters){
+            if (letters[l] == "," || letters[l] == "." ){
+                counter = counter
+            }else{
+                counter += 1
+            }
+        }
+        a[counter] += 1
+        counter = 0
+    }
+}END{
+    for (count in a){
+        print count" "a[count]
+    }
+}' dodatkowe/nowomowa.txt
