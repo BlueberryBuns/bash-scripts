@@ -22,3 +22,6 @@
 # pomijajac linie puste i takie, których jedyną zawartość stanowią spacje.
 #
 
+file="dodatkowe/cpplint.txt"
+
+sed 's/<[^>]*>//g' "${file}" | sed "/^[ ]*$/d"
