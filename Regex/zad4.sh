@@ -22,3 +22,15 @@
 # Wynik wyświetlić jako ułamek w postaci X/Y.
 #
 
+file="dodatkowe/slajdy.tex"
+
+awk 'BEGIN{ lc=0; e=0 }
+
+/^[ ]*$/{
+    e+=1;
+    };
+    {
+    lc+=1;
+    }
+
+END{ printf "%d/%d", lc-e, lc}' "${file}"
