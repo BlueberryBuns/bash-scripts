@@ -26,3 +26,6 @@
 # Jako wynik zwrócić same unikalne ścieżki, każdą w nowej linii.
 #
 
+file="dodatkowe/slajdy.tex"
+
+grep -o "\\fbox{.\+}" "${file}" | sed 's/.$//' | grep -o "\\includegraphics.\+" | grep -o "{.\+}" | tr -d "{}"
