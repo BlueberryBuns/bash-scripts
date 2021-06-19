@@ -24,3 +24,6 @@
 # Zwrócić same unikalne nazwy, bez nawiasów, każdą nazwę w nowej linii.
 #
 
+file="dodatkowe/service.py"
+
+grep -o "def[[:space:]]\+[_a-z]\+" "${file}" | cut -c 4- | tr -d " " | sort -u
