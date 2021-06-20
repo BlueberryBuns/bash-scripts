@@ -33,7 +33,7 @@
 file="dodatkowe/simple.json"
 
 
-grep "^" "${file}" | tr -d " " |sed "s/\"\(podklucz[0-9]\|klucz[0-9]\)\":\"\([^\"]*\)\"/<\1>\2<\/\1>/g"
+grep "^" "${file}" | tr -d " " | sed "s/\"\(podklucz[0-9]\|klucz[0-9]\)\":\"\"/<\1 \/>/g" | sed "s/\"\(podklucz[0-9]\|klucz[0-9]\)\":\"\([^\"]*\)\"/<\1>\2<\/\1>/g"
 
 # grep "^" "${file}"| sed "s/\"\(\[^\"]*\)\":/x\;/g"
 
