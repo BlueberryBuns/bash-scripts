@@ -21,3 +21,6 @@
 # literami w tekście.
 #
 
+
+
+grep "^[#;\n+]" $0 | sed "s/\( [a-z]\) /\1\&nbsp\;/g"
